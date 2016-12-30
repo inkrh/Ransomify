@@ -2,10 +2,15 @@ from PIL import Image
 import random
 import string
 
+
+##TODO create a larger source character set, including all ascii symbols
+##TODO create source images for common words for a better appearance
+##TODO alter stringToImage to handle the above
+
 def stringToImage(s):
     o = []
     for l in s:
-        if l.upper() in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+        if l.upper() in string.ascii_uppercase:
             d = "1"
             if random.randint(1,20) > 10:
                 d = "2"
