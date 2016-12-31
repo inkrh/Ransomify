@@ -24,11 +24,13 @@ def stringToImage(s):
 
 def sentence(s):
     chars = stringToImage(s)
+    ##TODO improve sizing to handle multiple lines as well as escape chars
     i = Image.new('RGBA',(len(chars)*110,200),(255,255,255,0))
     mIndex = len(chars)
     for l in range(mIndex):
         if not "ignore" in chars[l]:
             im = Image.open(chars[l])
+            ##TODO improve backgrounds before rotating
 ##            im = im.rotate(random.randint(0-random.randint(0,20),random.randint(0,20)))
             i.paste(im,(l*110,0))
 
@@ -46,7 +48,7 @@ def process(text, image):
     t = sentence(text)
     w,h = t.size
     iw,ih = i.size
-    
+    ##TODO improve sizing and placement - esp. for long lines
     if w > iw:
         nh = (iw/w)*h
         print("Resizing to fit - " + str((iw,nh)))    
