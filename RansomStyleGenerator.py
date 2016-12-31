@@ -29,7 +29,7 @@ def sentence(s):
     for l in range(mIndex):
         if not "ignore" in chars[l]:
             im = Image.open(chars[l])
-##            im = im.rotate(random.randint(0-random.randint(20,20),random.randint(20,20)))
+##            im = im.rotate(random.randint(0-random.randint(0,20),random.randint(0,20)))
             i.paste(im,(l*110,0))
 
     return i
