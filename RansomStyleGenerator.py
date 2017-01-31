@@ -43,7 +43,7 @@ def ImageMerge(i1,i2,left,top):
     i2.paste(t,(left,top),m)
     return i2
 
-def process(text, image):
+def process(text, image, pos="top"):
     i = Image.open(image)
     t = sentence(text)
     w,h = t.size
@@ -54,14 +54,20 @@ def process(text, image):
         print("Resizing to fit - " + str((iw,nh)))    
         t = t.resize((iw,nh))
     c = (iw/2)-(w/2)
+    if pos=="mid":
+        vc = (ih/2)-(h/2)
+    elif pos=="base":
+        vc = ih-h
+    else:
+        vc = 0
     
-    return ImageMerge(t,i,c,0)
+    return ImageMerge(t,i,c,vc)
 
 
-def Ransomify(text, image, saveas):
+def Ransomify(text, image, saveas, pos="top"):
     if not saveas.endswith(".png"):
         saveas = saveas + ".png"
         
     print("Adding " + text + " to " + image + " and saving as " + saveas + ".")
-    process(text, image).save(saveas, "PNG")
+    process(text, image,pos).save(saveas, "PNG")
     print("Done.")
