@@ -33,7 +33,7 @@ def sentence(s):
             ##TODO improve backgrounds before rotating
 ##            im = im.rotate(random.randint(0-random.randint(0,20),random.randint(0,20)))
             i.paste(im,(l*110,0))
-
+            
     return i
 
 def ImageMerge(i1,i2,left,top):
@@ -52,16 +52,17 @@ def process(text, image, pos="top"):
     if w > iw:
         nh = (iw/w)*h
         print("Resizing to fit - " + str((iw,nh)))    
-        t = t.resize((iw,nh))
-    c = (iw/2)-(w/2)
+        t = t.resize((iw,int(nh)))
+        w,h=t.size
+    c = ((iw/2)-(w/2))
     if pos=="mid":
         vc = (ih/2)-(h/2)
     elif pos=="base":
         vc = ih-h
     else:
         vc = 0
-    
-    return ImageMerge(t,i,c,vc)
+        
+    return ImageMerge(t,i,int(c),int(vc))
 
 
 def Ransomify(text, image, saveas, pos="top"):
